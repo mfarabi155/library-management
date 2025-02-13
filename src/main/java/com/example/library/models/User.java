@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -18,6 +20,8 @@ public class User {
     private String fullname;
     private String username;
     private String email;
+
+    @JsonIgnore
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -27,4 +31,5 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
 }
